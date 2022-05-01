@@ -1,4 +1,6 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:replay_chart/test/flameTest.dart';
 import 'package:replay_chart/test/pointerDrawWidget.dart';
 import 'package:replay_chart/test/clockView.dart';
 
@@ -8,6 +10,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  final myGame = MyGame();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +21,10 @@ class MyApp extends StatelessWidget {
       ),
       // home: Home(),
       // home: PointerDrawingWidget(title: 'Pointer drawing lesson'),
-      home:ClockView(),
+      // home:ClockView(),
+      home: GameWidget(
+        game: myGame,
+      ),
     );
   }
 }
