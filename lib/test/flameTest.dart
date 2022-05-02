@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flame/timer.dart';
 
 class MyCrate extends SpriteComponent {
   // creates a component that renders the crate.png sprite, with size 16 x 16
@@ -29,20 +30,29 @@ class MyRectangle extends RectangleComponent {
       : super(
             position: Vector2(x, y),
             size: Vector2(width, height),
-            paint: paint);
+            paint: paint) {
+    interval = Timer(
+      0.01,
+      onTick: () => moveCircle(),
+      repeat: true,
+    );
+  }
   double i = 0;
   int r = 100;
   double time = 0;
+  Timer interval;
+
+  void moveCircle() {
+    if (i < 2 * pi) {
+      i+=0.01;
+    } else {
+      i = 0;
+    }
+  }
 
   @override
   void update(double dt) {
-    super.update(dt);
-    time += dt;
-    i = time / 2;
-    if (i > 2 * pi) {
-      i = 0;
-      time = 0;
-    }
+    interval.update(dt);
   }
 
   @override
