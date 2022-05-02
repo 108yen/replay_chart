@@ -1,5 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame/palette.dart';
+import 'package:flutter/material.dart';
 
 class MyCrate extends SpriteComponent {
   // creates a component that renders the crate.png sprite, with size 16 x 16
@@ -20,10 +22,56 @@ class MyCrate extends SpriteComponent {
   }
 }
 
+class MyRectangle extends RectangleComponent {
+  MyRectangle({double x, double y, double width, double height, Paint paint})
+      : super(
+            position: Vector2(x, y),
+            size: Vector2(width, height),
+            paint: paint);
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+  }
+
+  @override
+  void render(Canvas canvas) {
+    canvas.drawRect(
+      Rect.fromLTWH(
+          position.x, position.y, position.x + size.x, position.y + size.y),
+      paint,
+    );
+  }
+}
+
 class MyGame extends FlameGame {
   @override
   Future<void> onLoad() async {
     await add(MyCrate());
+
+    final paint = BasicPalette.red.paint()..style = PaintingStyle.stroke;
+    // final square = RectangleComponent.square(
+    //   size: 200.0,
+    //   position: Vector2(100, 200),
+    //   paint: paint,
+    // );
+    // add(square);
+
+    // final rectangle = RectangleComponent(
+    //   size: Vector2(300.0, 200.0),
+    //   position: Vector2(100, 200),
+    //   paint: paint,
+    // );
+    // add(rectangle);
+
+    final myRectangle = MyRectangle(
+      x: 200,
+      y: 200,
+      width: 200,
+      height: 200,
+      paint: paint,
+    );
+    add(myRectangle);
   }
 }
 
