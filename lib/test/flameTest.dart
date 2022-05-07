@@ -44,7 +44,7 @@ class MyRectangle extends RectangleComponent {
 
   void moveCircle() {
     if (i < 2 * pi) {
-      i+=0.01;
+      i += 0.01;
     } else {
       i = 0;
     }
@@ -67,23 +67,13 @@ class MyRectangle extends RectangleComponent {
 
 class MyGame extends FlameGame {
   @override
+  Color backgroundColor() => Colors.white;
+  
+  @override
   Future<void> onLoad() async {
     // await add(MyCrate());
 
     final paint = Paint()..color = Colors.red;
-    // final square = RectangleComponent.square(
-    //   size: 200.0,
-    //   position: Vector2(100, 200),
-    //   paint: paint,
-    // );
-    // add(square);
-
-    // final rectangle = RectangleComponent(
-    //   size: Vector2(300.0, 200.0),
-    //   position: Vector2(100, 200),
-    //   paint: paint,
-    // );
-    // add(rectangle);
 
     final myRectangle = MyRectangle(
       x: 200,
@@ -95,12 +85,3 @@ class MyGame extends FlameGame {
     add(myRectangle);
   }
 }
-
-// main() {
-//   final myGame = MyGame();
-//   runApp(
-//     GameWidget(
-//       game: myGame,
-//     ),
-//   );
-// }
